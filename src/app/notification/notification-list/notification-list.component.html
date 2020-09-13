@@ -1,0 +1,14 @@
+<h2 class="example-h2">Уведомления</h2>
+
+<mat-list>
+  <ng-container *ngFor="let element of dataSource">
+    <mat-list-item>
+      <mat-icon mat-list-icon>folder</mat-icon>
+      <div mat-line>{{element.object.ObjectType.present}} <span>{{element.object.number}}</span></div>
+      <div mat-line> Статус изменен : {{element.currentStatus.present}} </div>
+      <div mat-line> Дата изменения : {{element.statusChangeAt | date}} </div>
+      <div mat-line> Подробнее </div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </ng-container>
+</mat-list>

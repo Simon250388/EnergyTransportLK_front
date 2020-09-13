@@ -1,0 +1,22 @@
+<div fxLayout="row wrap">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="66%" *ngFor="let item of dataSource | async ">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{item.description}}</mat-card-title>                
+            </mat-card-header>
+            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                alt="Photo of a Shiba Inu">
+            <mat-card-content>
+                <mat-list>
+                    <mat-list-item> Присоединенная мощность {{item.currentPower}} кВт </mat-list-item>
+                    <mat-list-item> Категория надежности {{item.reliabilityCategory}} </mat-list-item>
+                    <mat-list-item> Вид нагрузки коммерческая </mat-list-item>
+                </mat-list>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button [routerLink]="['/object-tp', item.id]">Подробнее</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

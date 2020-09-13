@@ -1,0 +1,29 @@
+<h2>Подача обращения</h2>
+<form [formGroup]="formGroup" class="example-form">
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Тип обращения</mat-label>
+            <select matNativeControl required>
+                <option value="PowerUp">Увеличение мощности</option>
+                <option value="NewRequest">Новое технологическое присоединение</option>
+            </select>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field class="example-full-width">
+            <mat-label>Сообщение</mat-label>
+            <textarea matInput placeholder="Ex. 100 Main St">1600 Amphitheatre Pkwy</textarea>
+        </mat-form-field>
+    </p>
+    <mat-list>
+        <mat-list-item>
+            <mat-icon mat-list-icon>folder</mat-icon>
+            <div mat-line>Формат (jpeg,png,bmp,tiff,pdf)</div>
+            <div mat-line> <button mat-button>Basic</button> </div>
+        </mat-list-item>
+    </mat-list>
+
+    <button mat-button>Отправить</button>
+
+
+</form>

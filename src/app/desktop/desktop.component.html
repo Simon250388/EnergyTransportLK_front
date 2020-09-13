@@ -1,0 +1,37 @@
+<mat-tab-group *ngIf="smallSize" animationDuration="0ms">
+    <mat-tab label="Заявки">
+        <lk-request-tp-desktop-list></lk-request-tp-desktop-list>
+    </mat-tab>
+    <mat-tab label="Уведомления">
+        <lk-notification-desktop></lk-notification-desktop>
+    </mat-tab>
+    <mat-tab label="Обращения">
+        <lk-appeal-desktop></lk-appeal-desktop>
+    </mat-tab>
+    <mat-tab label="Платежи">
+        <lk-payments-desktop></lk-payments-desktop>
+    </mat-tab>
+    <mat-tab label="Передача показаний">
+        <lk-value-meter-desktop></lk-value-meter-desktop>
+    </mat-tab>
+</mat-tab-group>
+
+
+<div fxLayout="row wrap" fxLayoutAlign="center" *ngIf="!smallSize">
+    <div fxFlex="66%" fxFlex.xs="100%" fxFlex.sm="66%">
+        <lk-request-tp-desktop-list></lk-request-tp-desktop-list>
+    </div>
+    <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%">
+        <lk-notification-desktop></lk-notification-desktop>
+    </div>
+    <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%">
+        <lk-appeal-desktop></lk-appeal-desktop>
+    </div>
+    <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%">
+        <lk-payments-desktop></lk-payments-desktop>
+    </div>
+
+    <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%">
+        <lk-value-meter-desktop></lk-value-meter-desktop>
+    </div>
+</div>

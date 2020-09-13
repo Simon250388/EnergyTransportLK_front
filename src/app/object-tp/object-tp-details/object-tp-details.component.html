@@ -1,0 +1,56 @@
+<mat-tab-group animationDuration="0ms">
+    <mat-tab label="Главное">
+        <table class="mat-table">
+            <tr class="mat-row">
+                <td class="mat-cell">Наименование</td>
+                <td class="mat-cell">{{model.description}}</td>
+            </tr>           
+            <tr class="mat-row">
+                <td class="mat-cell">Местонахождение</td>
+                <td class="mat-cell">{{model.location}}</td>
+            </tr>
+            <tr class="mat-row">
+                <td class="mat-cell">Кадастровый номер объекта</td>
+                <td class="mat-cell">{{model.cadastralNumObj}}</td>
+            </tr>
+            <tr class="mat-row">
+                <td class="mat-cell">Кадастровый номер земельного участка</td>
+                <td class="mat-cell">{{model.cadastralNumArea}}</td>
+            </tr>
+            <tr class="mat-row">
+                <td class="mat-cell">МКД</td>
+                <td class="mat-cell">{{model.locatedInBuilding}}</td>
+            </tr>
+            <tr class="mat-row">
+                <td class="mat-cell">Вид нагрузки</td>
+                <td class="mat-cell">{{model.chargeType}}</td>
+            </tr>
+        </table>
+    </mat-tab>
+    <mat-tab label="Точки учета">
+        <mat-expansion-panel (opened)="false" *ngFor="let meter of model.meters">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Объект {{meter.description}}</mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+            <table class="mat-table">
+                <tr class="mat-row">
+                    <td class="mat-cell">Марка прибора учета</td>
+                    <td class="mat-cell">{{meter.model}}</td>
+                </tr>
+                <tr class="mat-row">
+                    <td class="mat-cell">Окончание срока поверки</td>
+                    <td class="mat-cell">{{meter.verificationPeriod | date}}</td>
+                </tr>
+                <tr class="mat-row">
+                    <td class="mat-cell">Расчет производился по</td>
+                    <td class="mat-cell">{{meter.calculationPeriod}}</td>
+                </tr>
+                <tr class="mat-row">
+                    <td class="mat-cell">Дополнителная информация</td>
+                    <td class="mat-cell">{{meter.information}}</td>
+                </tr>                
+            </table>
+        </mat-expansion-panel>
+    </mat-tab>
+</mat-tab-group>

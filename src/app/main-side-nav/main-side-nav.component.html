@@ -1,0 +1,26 @@
+<mat-nav-list>
+    <a mat-list-item routerLink="/desktop">
+        <mat-icon>home_work</mat-icon><span *ngIf="!smallSize" class="nav-caption">Рабочий стол</span>
+    </a>
+    <a mat-list-item routerLink="/request-tp">
+        <mat-icon>assignment_turned_in</mat-icon> <span *ngIf="!smallSize" class="nav-caption">Заявки на тп</span>
+    </a>
+    <a mat-list-item routerLink="/object-tp">
+        <mat-icon>house</mat-icon><span *ngIf="!smallSize" class="nav-caption">Объекты тп</span>
+    </a>
+    <a mat-list-item routerLink="#">
+        <mat-icon>payments</mat-icon><span *ngIf="!smallSize" class="nav-caption">Мои платежи</span>
+    </a>
+    <a mat-list-item routerLink="#">
+        <mat-icon>people</mat-icon><span *ngIf="!smallSize" class="nav-caption">Договоры энергоснабжения</span>
+    </a>
+    <a mat-list-item routerLink="#">
+        <mat-icon>account_balance</mat-icon><span *ngIf="!smallSize" class="nav-caption">Передача показаний</span>
+    </a>
+    <a mat-list-item routerLink="/appeal">
+        <mat-icon>account_balance</mat-icon><span *ngIf="!smallSize" class="nav-caption">Обращения</span>
+    </a>
+    <a mat-list-item routerLink="/notification">
+        <mat-icon>notification_important</mat-icon><span *ngIf="!smallSize" class="nav-caption">Уведомления</span>
+    </a>
+</mat-nav-list>

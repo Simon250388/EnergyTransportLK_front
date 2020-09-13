@@ -1,0 +1,229 @@
+<ng-template #operationtype>
+    <h4>Прощу осуществить</h4>
+    <mat-form-field appearance="fill">
+        <select matNativeControl required>
+            <option value="PowerUp">Увеличение мощности</option>
+            <option value="NewRequest">Новое технологическое присоединение</option>
+        </select>
+    </mat-form-field>
+</ng-template>
+
+<ng-template #objectproperty>
+    <p>
+        <mat-form-field class="example-form-field" [formGroup]="objectFormGroup">
+            <mat-label>Наименование</mat-label>
+            <input matInput type="text" formControlName="description">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field class="example-form-field" [formGroup]="objectFormGroup">
+            <mat-label>Округ</mat-label>
+            <input matInput type="text">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field class="example-form-field" [formGroup]="objectFormGroup">
+            <mat-label>Местонахождения</mat-label>
+            <input matInput type="text" formControlName="location">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field class="example-form-field" [formGroup]="objectFormGroup">
+            <mat-label>Кадастровый номер объекта</mat-label>
+            <input matInput type="text" formControlName="cadastralNumObj">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field class="example-form-field" [formGroup]="objectFormGroup">
+            <mat-label>Кадастровый номер земельного участка</mat-label>
+            <input matInput type="text" formControlName="cadastralNumArea">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </p>
+    <p [formGroup]="objectFormGroup">
+        <mat-checkbox class="example-margin" formControlName="locatedInBuilding">Признак многоквартирного дома
+        </mat-checkbox>
+    </p>
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Вид нагрузки</mat-label>
+            <select matNativeControl required>
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+            </select>
+        </mat-form-field>
+    </p>
+</ng-template>
+
+<ng-template #commissioningDates>
+    <table mat-table [dataSource]="commissioningDatesControlValue" class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef [style]="'flex: 0 0 50px;'">Номер</mat-header-cell>
+            <mat-cell *matCellDef="let row" [style]="'flex: 0 0 50px;'">{{row.id}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="designTime">
+            <mat-header-cell *matHeaderCellDef>Срок проектирования</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.designTime | date:'dd.MM.yyyy'}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="commissioningDate">
+            <mat-header-cell *matHeaderCellDef>Срок ввдения в эксплуатацию</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.commissioningDate | date:'dd.MM.yyyy'}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="connectedPower">
+            <mat-header-cell *matHeaderCellDef>Присоединяемая мощность</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.connectedPower}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="accountingPointCount">
+            <mat-header-cell *matHeaderCellDef>Количество точек присоединения</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.accountingPointCount}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="voltageLevel">
+            <mat-header-cell *matHeaderCellDef>Уровень напряжения</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.voltageLevel}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="reliabilityCategory">
+            <mat-header-cell *matHeaderCellDef>Категория надежности</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.reliabilityCategory}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </table>
+</ng-template>
+
+<ng-template #tecnicalpropertyPreView>
+    <table class="mat-table">
+        <tr class="mat-row">
+            <td class="mat-cell">Раннее присоединенная мощность</td>
+            <td class="mat-cell">{{objectFormGroup?.controls['currentPower']?.value}}</td>
+        </tr>
+        <tr class="mat-row">
+            <td class="mat-cell">Максимальная мощность</td>
+            <td class="mat-cell">{{objectFormGroup?.controls['maxPower']?.value}}</td>
+        </tr>
+        <tr class="mat-row">
+            <td class="mat-cell">Категория надежности</td>
+            <td class="mat-cell">{{objectFormGroup?.controls['reliabilityCategory']?.value}}</td>
+        </tr>
+        <tr class="mat-row">
+            <td class="mat-cell">Энргетическая компания</td>
+            <td class="mat-cell">{{objectFormGroup?.controls['provider']?.value}}</td>
+        </tr>
+    </table>
+</ng-template>
+
+<ng-template #tecnicalproperty>
+    <p>
+        <mat-form-field class="example-full-width" [formGroup]="objectFormGroup">
+            <mat-label>Ранее присоединенная мощность</mat-label>
+            <input matInput type="number" formControlName="currentPower">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field class="example-full-width" [formGroup]="objectFormGroup">
+            <mat-label>Категория надежности</mat-label>
+            <input matInput type="number" formControlName="reliabilityCategory">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field class="example-full-width" [formGroup]="objectFormGroup">
+            <mat-label>Максимальная мощность</mat-label>
+            <input matInput type="number" formControlName="maxPower">
+        </mat-form-field>
+    </p>
+
+    <div class="example-button-row">
+        <button mat-button color="primary" (click)="addCommissioningDate()">Добавить</button>
+    </div>
+</ng-template>
+
+<ng-template #attachments>
+    <mat-nav-list>
+        <mat-list-item>
+            <mat-icon mat-list-icon>folder</mat-icon>
+            <div mat-line>Свидетельство о государственной регистрации права на земельный участок/ на объект</div>
+            <div mat-line> Формат jpeg, png </div>
+            <div mat-line> <button mat-button>Загрузить</button> </div>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-icon mat-list-icon>folder</mat-icon>
+            <div mat-line>Свидетельство о государственной регистрации права на земельный участок/ на объект</div>
+            <div mat-line> Формат jpeg, png </div>
+            <div mat-line> <button mat-button>Загрузить</button> </div>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-icon mat-list-icon>folder</mat-icon>
+            <div mat-line>Свидетельство о государственной регистрации права на земельный участок/ на объект</div>
+            <div mat-line> Формат jpeg, png </div>
+            <div mat-line> <button mat-button>Загрузить</button> </div>
+        </mat-list-item>
+    </mat-nav-list>
+</ng-template>
+
+<form [formGroup]="formGroup" (ngSubmit)="submit()">
+    <mat-vertical-stepper [linear]="false" #stepper>
+        <mat-step>
+            <ng-template matStepLabel>Вибор типа операции</ng-template>
+            <ng-container *ngTemplateOutlet="operationtype"></ng-container>
+            <div>
+                <button mat-button matStepperNext>Далее</button>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Объект заявки</ng-template>
+            <ng-container *ngTemplateOutlet="objectproperty"></ng-container>
+            <div>
+                <button mat-button matStepperPrevious>Назад</button>
+                <button mat-button matStepperNext>Далее</button>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Технические данные</ng-template>
+            <ng-container *ngTemplateOutlet="tecnicalproperty"></ng-container>
+            <ng-container *ngTemplateOutlet="commissioningDates"></ng-container>
+            <div>
+                <button mat-button matStepperPrevious>Назад</button>
+                <button mat-button matStepperNext>Далее</button>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Документы</ng-template>
+            <ng-container *ngTemplateOutlet="attachments"></ng-container>
+            <div>
+                <button mat-button matStepperPrevious>Назад</button>
+                <button mat-button matStepperNext>Далее</button>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Пред просмотр</ng-template>
+            <ng-container *ngTemplateOutlet="tecnicalpropertyPreView"></ng-container>
+            <ng-container *ngTemplateOutlet="commissioningDates"></ng-container>
+            <div>
+                <button mat-button matStepperPrevious>Назад</button>
+                <button mat-button type="submit" (click)="stepper.reset()">Отправить</button>
+            </div>
+        </mat-step>
+    </mat-vertical-stepper>
+</form>

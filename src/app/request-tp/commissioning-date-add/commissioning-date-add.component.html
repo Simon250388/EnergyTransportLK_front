@@ -1,0 +1,49 @@
+<h1 mat-dialog-title>Заголовок</h1>
+<div mat-dialog-content>
+    <form [formGroup]="formGroup">
+        <p>
+            <mat-form-field appearance="fill">
+                <mat-label>Сроек проектирования</mat-label>
+                <input matInput [matDatepicker]="designTimePicker" formControlName="designTime">
+                <mat-datepicker-toggle matSuffix [for]="designTimePicker"></mat-datepicker-toggle>
+                <mat-datepicker #designTimePicker></mat-datepicker>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="fill">
+                <mat-label>Сроек введения в эксплуатацию</mat-label>
+                <input formControlName="commissioningDate" matInput [matDatepicker]="commissioningDatePicker">
+                <mat-datepicker-toggle matSuffix [for]="commissioningDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #commissioningDatePicker></mat-datepicker>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="example-full-width">
+                <mat-label>Присоединяемая мощность</mat-label>
+                <input matInput type="number" formControlName="connectedPower">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="example-full-width">
+                <mat-label>Количество точек присоединения</mat-label>
+                <input matInput type="number" formControlName="accountingPointCount">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="example-full-width">
+                <mat-label>Уровень напряжения</mat-label>
+                <input matInput type="number" formControlName="voltageLevel">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="example-full-width">
+                <mat-label>Категория надежности</mat-label>
+                <input matInput type="number" formControlName="reliabilityCategory">
+            </mat-form-field>
+        </p>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="null">Отмена</button>
+    <button mat-button [mat-dialog-close]="formGroup.value" cdkFocusInitial>Завершить</button>
+</div>

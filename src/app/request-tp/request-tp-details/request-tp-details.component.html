@@ -1,0 +1,143 @@
+<ng-template #requesttpdata>
+    <mat-expansion-panel (opened)="false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>Объект</mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-divider></mat-divider>
+        <table class="mat-table">
+            <tr class="mat-row">
+                <td class="mat-cell">Наименование</td>
+                <td class="mat-cell">{{model.object?.description}}</td>
+            </tr>
+            <tr class="mat-row">
+                <td class="mat-cell">Округ</td>
+                <td class="mat-cell">III</td>
+            </tr>
+            <tr class="mat-row">
+                <td class="mat-cell">Местонахождение</td>
+                <td class="mat-cell">{{model.object?.location}}</td>
+            </tr>
+            <tr class="mat-row">
+                <td class="mat-cell">Кадастровый номер объекта</td>
+                <td class="mat-cell">{{model.object?.cadastralNumObj}}</td>
+            </tr>
+            <tr class="mat-row">
+                <td class="mat-cell">Кадастровый номер земельного участка</td>
+                <td class="mat-cell">{{model.object?.cadastralNumArea}}</td>
+            </tr>
+            <tr class="mat-row">
+                <td class="mat-cell">МКД</td>
+                <td class="mat-cell">{{model.object?.locatedInBuilding}}</td>
+            </tr>
+            <tr class="mat-row">
+                <td class="mat-cell">Вид нагрузки</td>
+                <td class="mat-cell">{{model.object?.chargeType}}</td>
+            </tr>
+        </table>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel (opened)="false" >
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Технические данные
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-divider></mat-divider>
+        <table class="mat-table">
+            <tr class="mat-row">
+                <td class="mat-cell">Раннее присоединенная мощность</td>
+                <td class="mat-cell">{{model.object?.currentPower}}</td>
+            </tr>
+            <tr class="mat-row">
+                <td class="mat-cell">Максимальная мощность</td>
+                <td class="mat-cell">{{model.object?.maxPower}}</td>
+            </tr>
+            <tr class="mat-row">
+                <td class="mat-cell">Категория надежности</td>
+                <td class="mat-cell">{{model.object?.reliabilityCategory}}</td>
+            </tr>
+            <tr class="mat-row">
+                <td class="mat-cell">Энргетическая компания</td>
+                <td class="mat-cell">{{model.provider}}</td>
+            </tr>
+        </table>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Сроки проектирования и поэтапного введения в эксплутацию объекта
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-divider></mat-divider>        
+        <table mat-table [dataSource]="model.object?.commissioningDates" class="mat-elevation-z8">
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef [style]="'flex: 0 0 50px;'">Номер</mat-header-cell>
+                <mat-cell *matCellDef="let row" [style]="'flex: 0 0 50px;'">{{row.id}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="designTime">
+                <mat-header-cell *matHeaderCellDef>Срок проектирования</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.designTime | date}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="commissioningDate">
+                <mat-header-cell *matHeaderCellDef>Срок ввдения в эксплуатацию</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.commissioningDate | date}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="connectedPower">
+                <mat-header-cell *matHeaderCellDef>Присоединяемая мощность</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.connectedPower}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="accountingPointCount">
+                <mat-header-cell *matHeaderCellDef>Количество точек присоединения</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.accountingPointCount}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="voltageLevel">
+                <mat-header-cell *matHeaderCellDef>Уровень напряжения</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.voltageLevel}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="reliabilityCategory">
+                <mat-header-cell *matHeaderCellDef>Категория надежности</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.reliabilityCategory}}</mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </table>
+    </mat-expansion-panel>
+</ng-template>
+
+<ng-template #attachments>
+    Тут будут card files
+</ng-template>
+
+<mat-horizontal-stepper [linear]="false" #stepper>
+    <mat-step>
+        <ng-template matStepLabel>Заявка</ng-template>
+        <ng-container *ngTemplateOutlet="requesttpdata"></ng-container>
+        <div>
+            <button mat-button matStepperNext>Далее</button>
+        </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Файлы</ng-template>
+        <ng-container *ngTemplateOutlet="attachments"></ng-container>
+        <div>
+            <button mat-button matStepperPrevious>Назад</button>
+            <button mat-button matStepperNext>Далее</button>
+        </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>История измененений</ng-template>
+        <ng-container *ngTemplateOutlet="attachments"></ng-container>
+        <div>
+            <button mat-button matStepperPrevious>Назад</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>
